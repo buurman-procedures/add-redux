@@ -1,7 +1,7 @@
 name: "Redux"
 description: "Add redux to a project"
 requirements: "pathExists('./package.json')"
-is_applicable: "!pathExists('./src/configureStore.(ts|js)x?')"
+applicable: "!pathExists('./src/configureStore.(ts|js)x?')"
 inputs:
     includeExample:
         long_name: "Include example"
@@ -41,27 +41,27 @@ steps:
     - name: Add boilerplate
       use: buurman-actions/template@master
       with:
-          source: ./resources/boilerplate
+          source: ./template
           destination: .
-    - name: Add counter example
-      use: buurman-actions/template@master
-      with:
-          source: ./resources/example
-          destination: .
-          overwrite: true
-    - name: Add counter example
-      use: buurman-procedures/add-redux-feature@master
-      with:
-          name: counter
-          state:
-              - name: count
-                type: number
-                initialValue: 0
-          selectors:
-              - name: getCount
-                code: "state.count"
-          reducers:
-              - name: increment
-                code: "state => ({ ...state, count: state.count + 1 })"
-              - name: decrement
-                code: "state => ({ ...state, count: state.count - 1 })"
+#    - name: Add redux devtools
+#      use: buurman-procedures/add-redux-devtools@master
+#      if: "inputs.devtools"
+#      with:
+#          enableInProduction: ${{ inputs.devtools }}
+#    - name: Add counter example
+#      use: buurman-procedures/add-redux-feature@master
+#      if: "inputs.includeExample"
+#      with:
+#          name: counter
+#          state:
+#              - name: count
+#                type: number
+#                initialValue: 0
+#          selectors:
+#              - name: getCount
+#                code: "state.count"
+#          reducers:
+#              - name: increment
+#                code: "state => ({ ...state, count: state.count + 1 })"
+#              - name: decrement
+#                code: "state => ({ ...state, count: state.count - 1 })"

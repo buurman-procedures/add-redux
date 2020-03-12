@@ -1,8 +1,8 @@
 {
-    "name": "@buurman-features/redux",
+    "name": "@buurman-procedures/add-redux",
     "version": "1.0.0-alpha.1",
     "description": "Adds redux to the current project",
-    "repository": "github:buurman-features/redux",
+    "repository": "github:buurman-procedures/add-redux",
     "private": true,
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,7 @@
     },
     "keywords": [
         "buurman",
-        "buurman-feature"
+        "buurman-procedure"
     ],
     "author": {
         "name": "Rik Hoffbauer",
@@ -18,6 +18,7 @@
     },
     "license": "MIT",
     "devDependencies": {
+        "@reduxjs/toolkit": "^1.2.5",
         "husky": "^4.2.3",
         "lint-staged": "^10.0.8",
         "prettier": "^1.19.1"
