@@ -1,0 +1,67 @@
+name: "Redux"
+description: "Add redux to a project"
+requirements: "pathExists('./package.json')"
+is_applicable: "!pathExists('./src/configureStore.(ts|js)x?')"
+inputs:
+    includeExample:
+        long_name: "Include example"
+        description: |
+            Indicates example code in the form of a reducer, actions and selectors should be added
+        type: boolean
+        default: true
+        required: true
+    devtools:
+        long_name: "Add redux devtools"
+        description: |
+            Indicates redux-devtools-extension should be installed
+            and the store should be configured to use it
+        type: boolean
+        default: true
+        required: true
+    devtoolsInProduction:
+        long_name: "Enable redux devtools in production"
+        description: |
+            Indicates redux-devtools-extension should be enabled
+            in production builds of the project.
+        type: boolean
+        default: true
+        required: true
+steps:
+    - name: Install @reduxjs/toolkit
+      use: buurman-actions/npm-install@master
+      with:
+          dependencies:
+              - @reduxjs/toolkit
+    - name: Install dependencies
+      use: buurman-actions/npm-install@master
+      if: "inputs.devtools"
+      with:
+          dependencies:
+              - redux-devtools-extension
+    - name: Add boilerplate
+      use: buurman-actions/template@master
+      with:
+          source: ./resources/boilerplate
+          destination: .
+    - name: Add counter example
+      use: buurman-actions/template@master
+      with:
+          source: ./resources/example
+          destination: .
+          overwrite: true
+    - name: Add counter example
+      use: buurman-procedures/add-redux-feature@master
+      with:
+          name: counter
+          state:
+              - name: count
+                type: number
+                initialValue: 0
+          selectors:
+              - name: getCount
+                code: "state.count"
+          reducers:
+              - name: increment
+                code: "state => ({ ...state, count: state.count + 1 })"
+              - name: decrement
+                code: "state => ({ ...state, count: state.count - 1 })"

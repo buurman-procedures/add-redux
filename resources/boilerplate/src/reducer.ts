@@ -1,10 +1,5 @@
-import { combineReducers } from "@reduxjs/toolkit";
-import { reducer as counter } from "./features/counter/state";
+import { AnyAction } from "redux";
 
 export type State = ReturnType<typeof reducer>;
 
-const reducer = combineReducers({
-    counter,
-});
-
-export default reducer;
+export const reducer = (state = {}, action: AnyAction) => state;
