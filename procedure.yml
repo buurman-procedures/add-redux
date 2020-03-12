@@ -20,6 +20,7 @@ inputs:
         required: true
     devtoolsInProduction:
         long_name: "Enable redux devtools in production"
+        if: "inputs.devtools"
         description: |
             Indicates redux-devtools-extension should be enabled
             in production builds of the project.
@@ -32,12 +33,6 @@ steps:
       with:
           dependencies:
               - @reduxjs/toolkit
-    - name: Install dependencies
-      use: buurman-actions/npm-install@master
-      if: "inputs.devtools"
-      with:
-          dependencies:
-              - redux-devtools-extension
     - name: Add boilerplate
       use: buurman-actions/template@master
       with:
