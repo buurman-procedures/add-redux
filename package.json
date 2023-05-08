@@ -18,7 +18,7 @@
     },
     "license": "MIT",
     "devDependencies": {
-        "@reduxjs/toolkit": "^1.2.5",
+        "@reduxjs/toolkit": "^1.9.5",
         "husky": "^4.2.3",
         "lint-staged": "^10.0.8",
         "prettier": "^1.19.1"
